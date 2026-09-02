@@ -136,19 +136,19 @@ for (const record of [...records.values()].sort((a, b) => b.url.length - a.url.l
 }
 
 const weddingPhotoAliases = {
-  'assets/vendor/a9eecb4c42639bcdd874.jpg': 'assets/images/dovang2-photo-01.jpg',
-  'assets/vendor/94fe6d7b5ae1a470dad3.jpg': 'assets/images/dovang2-photo-01.jpg',
-  'assets/vendor/0b8690c49f3c39051e00.jpg': 'assets/images/dovang2-photo-02.jpg',
-  'assets/vendor/7bd88fc3ea98a3c7c1c3.jpg': 'assets/images/dovang2-photo-03.jpg',
-  'assets/vendor/b5e25691b34227adfdc6.jpg': 'assets/images/dovang2-photo-04.jpg',
-  'assets/vendor/9ae2f8e0be4edc7dec38.jpg': 'assets/images/dovang2-photo-05.jpg',
-  'assets/vendor/393ca2572fbfae724cbe.jpg': 'assets/images/dovang2-photo-05.jpg',
-  'assets/vendor/56795978b16435408a01.jpg': 'assets/images/dovang2-photo-06.jpg',
-  'assets/vendor/c04e856d2c6b42cdc153.jpg': 'assets/images/dovang2-photo-06.jpg',
-  'assets/vendor/18531562e0202e0cb362.jpg': 'assets/images/dovang2-photo-07.jpg',
-  'assets/vendor/859d586d9165061ab981.jpg': 'assets/images/dovang2-photo-08.jpg',
-  'assets/vendor/6302dcad9c968c8546cf.jpg': 'assets/images/dovang2-photo-08.jpg',
-  'assets/vendor/31c98070cf360433b3e4.jpg': 'assets/images/dovang2-photo-08.jpg',
+  'assets/vendor/a9eecb4c42639bcdd874.jpg': 'assets/images/photo-01.jpg',
+  'assets/vendor/94fe6d7b5ae1a470dad3.jpg': 'assets/images/photo-01.jpg',
+  'assets/vendor/0b8690c49f3c39051e00.jpg': 'assets/images/photo-02.jpg',
+  'assets/vendor/7bd88fc3ea98a3c7c1c3.jpg': 'assets/images/photo-03.jpg',
+  'assets/vendor/b5e25691b34227adfdc6.jpg': 'assets/images/photo-04.jpg',
+  'assets/vendor/9ae2f8e0be4edc7dec38.jpg': 'assets/images/photo-05.jpg',
+  'assets/vendor/393ca2572fbfae724cbe.jpg': 'assets/images/photo-05.jpg',
+  'assets/vendor/56795978b16435408a01.jpg': 'assets/images/photo-06.jpg',
+  'assets/vendor/c04e856d2c6b42cdc153.jpg': 'assets/images/photo-06.jpg',
+  'assets/vendor/18531562e0202e0cb362.jpg': 'assets/images/photo-07.jpg',
+  'assets/vendor/859d586d9165061ab981.jpg': 'assets/images/photo-08.jpg',
+  'assets/vendor/6302dcad9c968c8546cf.jpg': 'assets/images/photo-08.jpg',
+  'assets/vendor/31c98070cf360433b3e4.jpg': 'assets/images/photo-08.jpg',
 };
 for (const [from, to] of Object.entries(weddingPhotoAliases)) {
   localizedHtml = localizedHtml.split(from).join(to);
