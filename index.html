@@ -147,12 +147,12 @@ Yêu người vừa ý, cưới người mình thương...">
 
       /* Two local venue cards: groom's home and bride's home. */
       #w-0dseanb4 {
-        height: 400px !important;
+        height: 510px !important;
       }
 
       /* The original border layer was only 216px tall. Extend it with the venue section. */
       #w-1bh5e7j0 {
-        height: 400px !important;
+        height: 510px !important;
       }
 
       #w-bride-address-card {
@@ -201,6 +201,126 @@ Yêu người vừa ý, cưới người mình thương...">
         color: #fff;
         font-family: 'Pattaya', sans-serif;
         font-size: 15px;
+      }
+
+      #w-wedding-gift-actions {
+        position: absolute;
+        top: 400px;
+        left: 55px;
+        display: grid;
+        gap: 10px;
+        width: 310px;
+      }
+
+      #w-wedding-gift-actions button {
+        width: 100%;
+        height: 42px;
+        border-radius: 24px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, .24);
+        color: #fff;
+        cursor: pointer;
+        font-family: 'Pattaya', sans-serif;
+        font-size: 16px;
+        line-height: 1;
+      }
+
+      #w-wedding-gift-actions .gift-groom {
+        background: #ff2632;
+      }
+
+      #w-wedding-gift-actions .gift-bride {
+        background: #c89b31;
+      }
+
+      #w-wedding-gift-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1000000002;
+        display: none;
+        place-items: center;
+        padding: 18px;
+        background: rgba(0, 0, 0, .56);
+      }
+
+      #w-wedding-gift-modal.is-open {
+        display: grid;
+      }
+
+      .wedding-gift-dialog {
+        position: relative;
+        display: grid;
+        grid-template-columns: 142px minmax(0, 1fr);
+        gap: 13px;
+        width: min(380px, 100%);
+        padding: 17px;
+        border: 4px solid #fff;
+        border-radius: 22px;
+        background: #fff;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, .34);
+      }
+
+      .wedding-gift-close {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        background: var(--gift-color, #a1121b);
+        color: #fff;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+        font-size: 30px;
+        line-height: 1;
+      }
+
+      .wedding-gift-qr {
+        display: block;
+        width: 142px;
+        height: 142px;
+        border: 1px solid #d8d8d8;
+        border-radius: 8px;
+        object-fit: contain;
+      }
+
+      .wedding-gift-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        padding: 9px 7px;
+        border: 1.5px solid var(--gift-color, #b0161f);
+        border-radius: 14px;
+        color: var(--gift-color, #a1121b);
+        text-align: center;
+      }
+
+      .wedding-gift-info p {
+        margin: 0;
+        font-family: 'Crimson Pro', serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      .wedding-gift-info p + p {
+        margin-top: 10px;
+      }
+
+      @media (max-width: 350px) {
+        .wedding-gift-dialog {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          max-width: 270px;
+        }
+
+        .wedding-gift-info {
+          width: 100%;
+        }
       }
 
       /* This local font contains the full Vietnamese character set (including “ỹ”). */
@@ -604,16 +724,91 @@ btn.addEventListener('click', async () => {
       // Keep the local map URL even if the original template listener is present.
       groomButton.addEventListener('click', event => event.stopImmediatePropagation(), true);
 
-      if (document.getElementById('w-bride-address-card')) return;
+      const venueContainer = venueSection.querySelector('.section-container');
+      if (!venueContainer) return;
 
-      const brideCard = document.createElement('div');
-      brideCard.id = 'w-bride-address-card';
-      brideCard.innerHTML = [
-        '<h3>NHÀ GÁI</h3>',
-        '<p>Tổ dân phố 2, phường Mỹ Lâm,<br>Tuyên Quang</p>',
-        '<a href="https://maps.app.goo.gl/J3XDVR2DgbpFcwHU7" title="Xem chỉ đường đến nhà gái">Xem Chỉ đường</a>'
+      if (!document.getElementById('w-bride-address-card')) {
+        const brideCard = document.createElement('div');
+        brideCard.id = 'w-bride-address-card';
+        brideCard.innerHTML = [
+          '<h3>NHÀ GÁI</h3>',
+          '<p>Tổ dân phố 2, phường Mỹ Lâm,<br>Tuyên Quang</p>',
+          '<a href="https://maps.app.goo.gl/J3XDVR2DgbpFcwHU7" title="Xem chỉ đường đến nhà gái">Xem Chỉ đường</a>'
+        ].join('');
+        venueContainer.append(brideCard);
+      }
+
+      if (document.getElementById('w-wedding-gift-actions')) return;
+
+      const giftActions = document.createElement('div');
+      giftActions.id = 'w-wedding-gift-actions';
+      giftActions.innerHTML = [
+        '<button type="button" class="gift-groom" data-gift="groom">Gửi Mừng Cưới cho Chú Rể</button>',
+        '<button type="button" class="gift-bride" data-gift="bride">Gửi Mừng Cưới cho Cô Dâu</button>'
       ].join('');
-      venueSection.querySelector('.section-container').append(brideCard);
+      venueContainer.append(giftActions);
+
+      const giftModal = document.createElement('div');
+      giftModal.id = 'w-wedding-gift-modal';
+      giftModal.setAttribute('aria-hidden', 'true');
+      giftModal.innerHTML = [
+        '<div class="wedding-gift-dialog" role="dialog" aria-modal="true" aria-label="Thông tin mừng cưới">',
+        '  <button type="button" class="wedding-gift-close" aria-label="Đóng">&times;</button>',
+        '  <img class="wedding-gift-qr" alt="Mã QR mừng cưới">',
+        '  <div class="wedding-gift-info">',
+        '    <p data-bank></p>',
+        '    <p data-account-holder></p>',
+        '    <p data-account-number></p>',
+        '  </div>',
+        '</div>'
+      ].join('');
+      document.body.append(giftModal);
+
+      const gifts = {
+        groom: {
+          qr: 'assets/images/qr_chure.jpg',
+          bank: 'Techcombank',
+          accountHolder: 'Dương Duy Đông',
+          accountNumber: '6121234567',
+          color: '#b0161f'
+        },
+        bride: {
+          qr: 'assets/images/qr_codau.jpg',
+          bank: 'Viettinbank',
+          accountHolder: 'Hoàng Ngọc Loan',
+          accountNumber: '100877402763',
+          color: '#c89b31'
+        }
+      };
+
+      const closeGiftModal = () => {
+        giftModal.classList.remove('is-open');
+        giftModal.setAttribute('aria-hidden', 'true');
+      };
+
+      giftActions.addEventListener('click', event => {
+        const button = event.target.closest('button[data-gift]');
+        const gift = button && gifts[button.dataset.gift];
+        if (!gift) return;
+
+        giftModal.style.setProperty('--gift-color', gift.color);
+        giftModal.querySelector('.wedding-gift-qr').src = gift.qr;
+        giftModal.querySelector('[data-bank]').textContent = gift.bank;
+        giftModal.querySelector('[data-account-holder]').textContent = gift.accountHolder;
+        giftModal.querySelector('[data-account-number]').textContent = gift.accountNumber;
+        giftModal.classList.add('is-open');
+        giftModal.setAttribute('aria-hidden', 'false');
+      });
+
+      giftModal.addEventListener('click', event => {
+        if (event.target === giftModal || event.target.closest('.wedding-gift-close')) {
+          closeGiftModal();
+        }
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeGiftModal();
+      });
     }
 
     if (document.readyState === 'loading') {
