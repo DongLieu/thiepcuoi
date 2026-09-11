@@ -965,6 +965,17 @@ document.addEventListener("keydown", function (event) {
     </script>
   <!-- WEDDING_INFO_RUNTIME_START -->
 <style>
+  /* Nút nhà gái được tạo động; dùng cùng nhịp pulse 4 giây của nút nhà trai gốc. */
+  #w-bride-address-card a {
+    animation-name: pulse;
+    -webkit-animation-name: pulse;
+    animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-duration: 4s;
+    -webkit-animation-duration: 4s;
+  }
   #w-wedding-gift-modal .wedding-gift-copy {
     width: 100%;
     margin-top: 13px;
