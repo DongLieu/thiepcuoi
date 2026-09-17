@@ -1136,7 +1136,7 @@ document.addEventListener("keydown", function (event) {
 
       const giftActions = document.createElement('div');
       giftActions.id = 'w-wedding-gift-actions';
-      giftActions.innerHTML = '<button type="button" class="gift-groom" data-gift="groom">Gửi Mừng Cưới cho Chú Rể</button><button type="button" class="gift-bride" data-gift="bride">Gửi Mừng Cưới cho Cô Dâu</button>';
+      giftActions.innerHTML = '<button type="button" class="gift-groom" data-gift="groom" aria-label="Gửi Mừng Cưới cho Chú Rể"><img class="gift-icon" src="assets/images/wedding-gift-icon-red-gold.png" alt="" aria-hidden="true"><span>Gửi Mừng Cưới cho Chú Rể</span></button><button type="button" class="gift-bride" data-gift="bride" aria-label="Gửi Mừng Cưới cho Cô Dâu"><img class="gift-icon" src="assets/images/wedding-gift-icon-red-gold.png" alt="" aria-hidden="true"><span>Gửi Mừng Cưới cho Cô Dâu</span></button>';
       venueContainer.append(giftActions);
 
       const giftModal = document.createElement('div');
